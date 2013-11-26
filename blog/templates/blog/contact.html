@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}My contact information{% endblock %}
+
+{% block context %}
+    <h2>Need to contact me? Here is the ways:</h2>
+    <address>
+        Andrey Zalomskiy<br>
+        Tel: 347-348-2680<br>
+        E-mail:<a href="mailto:azalomskiy@icloud.com">azalomskiy@icloud.com</a><br>
+    </address>
+    <h3>or send message</h3>
+    <form action='#' method='post'>
+        <p>
+            <label for='name'>Name</label>
+            <input name='name' id='name' type='text' required/>
+        </p>
+        <p>
+            <label for='email'>E-mail</label>
+            <input name='email' id='email' type='email' required/>
+        </p>
+        <p>
+            <label for='subject'>Subject</label>
+            <input name='subject' id='subject' type='text' required/>
+        </p>
+        <p>
+            <label for='message'>Message</label>
+            <textarea name='message' id='message' required></textarea>
+        </p>
+    </form>
+{% endblock %}

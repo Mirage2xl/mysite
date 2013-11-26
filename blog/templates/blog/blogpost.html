@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block context %}
+    <h2>{{ post.title }}</h2>
+    <p>Posted on {{ post.publish_date }} by Andrey Zalomskiy</p>
+    <p>{{ post.content }}</p>
+    <hr>
+    <h3>Comments</h3>
+    {% for comment in comments %}
+        <header>
+            <p><a href="mailto:{{ comment.email }}">{{ comment.name }}</a> on {{ comment.comment_date }}</p>
+        </header>
+        <p>{{ comment.content }}</p>
+    {% endfor %}
+    <hr>
+    <form action="#" method="post">
+        <h3>Post a comment</h3>
+        <p>
+            <label for="name">Name</label>
+            <input name="name" id="name" type='text' required/>
+        </p>
+        <p>
+            <label for='email'>E-mail</label>
+            <input name='email' id='email' type='email' required/>
+        </p>
+        <p>
+            <label for='comment'>Comment</label>
+            <textarea name='comment' id='comment' required></textarea>
+        </p>
+        <p><input type='submit' value='Post comment'/></p>
+    </form>
+{% endblock %}

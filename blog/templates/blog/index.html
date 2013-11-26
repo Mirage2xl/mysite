@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}A-Z's Blog{% endblock %}
+
+{% block context %}
+    {% for post in posts %}
+        <h2><a href='/blog/{{ post.url }}/'>{{ post.title }}</a></h2><br>
+        <p>Posted on {{ post.publish_date }} by Andrey Zalomskiy -
+            {% if post.comments_count > 1 %}
+                {{ post.comments_count }} comments
+            {% elif post.comments_count == 1 %}
+                {{ post.comments_count }} comment
+            {% endif %}</p>
+        <p>{{ post.content }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}

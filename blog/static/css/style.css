@@ -1,0 +1,57 @@
+header, nav, footer, article {
+    display: block;
+}
+
+body {
+    margin: 0px auto;
+    width: 940px;
+    background-color: #F0F0F0;
+}
+
+h2 {
+    font-size: 28px;
+    line-height: 44px;
+    padding: 22px 0;
+}
+
+h3 {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 11px 0;
+}
+
+p {
+    padding-bottom: 22px;
+}
+
+nav {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+nav ul {
+    margin: 0px auto;
+    width: 940px;
+    list-style-type: none;
+}
+
+nav ul li {
+    float: right;
+    display: inline;
+}
+
+nav ul li a {
+    display: block;
+    margin-right: 20px;
+    width: 140px;
+    font-size: 14px;
+    line-height: 44px;
+    text-align: center;
+    text-decoration: none;
+    color: #777;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}

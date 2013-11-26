@@ -1,0 +1,27 @@
+<!DOCtype>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel='stylesheet' href="{% static "css/style.css" %}"/>
+    </head>
+
+    <body>
+        <header>
+            <p><a href="blog"><img src='logo'>A-Z Design And Coding</a></p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="/blog/">BLOG</a></li>
+                <li><a href="/blog/about/">ABOUT</a></li>
+                <li><a href="/blog/contact/">CONTACT</a></li>
+            </ul>
+        </nav>
+        <br>
+            {% block context %}{% endblock %}
+        <footer>
+            <p>Designed and coded by Andrey Zalomskiy</p>
+        </footer>
+    </body>
+</html>
