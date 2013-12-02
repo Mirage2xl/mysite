@@ -19,7 +19,7 @@ class Comment(models.Model):
     email = models.EmailField()
     content = models.CharField(max_length=100)
     comment_date = models.DateField()
-    post = models.ForeignKey("Post")
+    post = models.ForeignKey(Post)
 
     def __unicode__(self):
         return self.content

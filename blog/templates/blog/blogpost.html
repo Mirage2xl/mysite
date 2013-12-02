@@ -15,20 +15,30 @@
         <p>{{ comment.content }}</p>
     {% endfor %}
     <hr>
-    <form action="#" method="post">
-        <h3>Post a comment</h3>
+    <h3>Post a comment</h3>
+    {% if form.errors %}
+        <p>Please correct a error {{ form.errors|pluralize }} below.</p>
+    {% endif %}
+    <form action="/blog/addcomment/{{ post.url }}" method="post">
         <p>
+            {{ form.name.errors }}
             <label for="name">Name</label>
-            <input name="name" id="name" type='text' required/>
+            {{ form.name }}
+<!--            <input name="name" id="name" type='text' required/>-->
         </p>
         <p>
+            {{ form.email.errors }}
             <label for='email'>E-mail</label>
-            <input name='email' id='email' type='email' required/>
+            {{ form.email }}
+<!--            <input name='email' id='email' type='email' required/>-->
         </p>
         <p>
+            {{ form.comment.errors }}
             <label for='comment'>Comment</label>
-            <textarea name='comment' id='comment' required></textarea>
+            {{ form.message }}
+<!--            <textarea name='comment' id='comment' required></textarea>-->
         </p>
+        {% csrf_token %}
         <p><input type='submit' value='Post comment'/></p>
     </form>
 {% endblock %}

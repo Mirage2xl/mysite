@@ -10,22 +10,37 @@
         E-mail:<a href="mailto:azalomskiy@icloud.com">azalomskiy@icloud.com</a><br>
     </address>
     <h3>or send message</h3>
-    <form action='#' method='post'>
+
+    {% if form.errors %}
+        <p>Please correct the error {{ form.errors|pluralize }} below.</p>
+    {% endif %}
+
+    <form action='/blog/contact/' method='post'>
         <p>
-            <label for='name'>Name</label>
-            <input name='name' id='name' type='text' required/>
+            {{ form.name.errors }}
+            <label for='name'>Name:</label>
+            {{ form.name }}
+<!--            <input name='name' id='name' type='text' value="{{ name }}" required/>-->
         </p>
         <p>
+            {{ form.email.errors }}
             <label for='email'>E-mail</label>
-            <input name='email' id='email' type='email' required/>
+            {{ form.email }}
+<!--            <input name='email' id='email' type='email' value='{{ email }}' required/>-->
         </p>
         <p>
+            {{ form.subject.errors }}
             <label for='subject'>Subject</label>
-            <input name='subject' id='subject' type='text' required/>
+            {{ form.subject }}
+<!--            <input name='subject' id='subject' type='text' value='{{ subject }}' required/>-->
         </p>
         <p>
+            {{ form.message.errors }}
             <label for='message'>Message</label>
-            <textarea name='message' id='message' required></textarea>
+            {{ form.message }}
+<!--            <textarea name='message' id='message' value='{{ subject }}' required></textarea>-->
         </p>
+        {% csrf_token %}
+        <p><input type='submit' value='Send message' /></p>
     </form>
 {% endblock %}
