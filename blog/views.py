@@ -1,5 +1,5 @@
 from datetime import datetime
-# from django.template import RequestContext
+from django.template import RequestContext
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -39,22 +39,20 @@ def blogpost(request, post_url):
 
 def addcomment(request, post_url):
     post_title = decode_url(post_url)
-#    context = RequestContext(request)
+    context = RequestContext(request)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
-            comment = cd.save(commit=False)
-            post = Post.objects.get(title=post_title)
-            comment.post = post
+            comment = Comment(post=Post.objects.get(title=post_title))
             comment.comment_date = datetime.date
+            comment = form.save(commit=False)
             comment.save()
-            return blogpost(request, post_url)
+            return HttpResponseRedirect('/blog/' + post_url)
         else:
             form.errors
     else:
-        form = CommentForm()
-    return blogpost(request, post_url)
+        context['form'] = CommentForm()
+    return render(request, 'blog/blogpost.html', context)
 
 
 def about(request):
