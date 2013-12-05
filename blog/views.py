@@ -3,6 +3,8 @@ from django.template import RequestContext
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
+#from django.core.urlresolvers import reverse
+from django.core.context_processors import csrf
 from blog.models import Post, Comment
 from blog.forms import ContactForm, CommentForm
 
@@ -28,30 +30,35 @@ def index(request):
 def blogpost(request, post_url):
     form = CommentForm()
     post_title = decode_url(post_url)
-    post_context = Post.objects.get(title__iexact=post_title)
+    post = Post.objects.get(title__iexact=post_title)
     try:
-        comments = Comment.objects.get(content__iexact=post_context)
+        comments = Comment.objects.filter(post=post)
     except:
         comments = {}
-    context = {'post': post_context, 'comments': comments, 'form': form}
+    context = {'post': post, 'comments': comments, 'form': form}
+    context.update(csrf(request))
     return render(request, 'blog/blogpost.html', context)
 
 
 def addcomment(request, post_url):
     post_title = decode_url(post_url)
-    context = RequestContext(request)
+    context = {}
+#    context = RequestContext(request)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment = Comment(post=Post.objects.get(title=post_title))
-            comment.comment_date = datetime.date
+            post = Post.objects.get(title__iexact=post_title)
             comment = form.save(commit=False)
+            comment.post = post
+            comment.comment_date = datetime.date
             comment.save()
-            return HttpResponseRedirect('/blog/' + post_url)
+            return HttpResponseRedirect('blog/blogpost/{{ post_url }}')
         else:
             form.errors
     else:
         context['form'] = CommentForm()
+        context['post'] = post
+        context['comment'] = Comment.objects.filter(post=post)
     return render(request, 'blog/blogpost.html', context)
 
 
