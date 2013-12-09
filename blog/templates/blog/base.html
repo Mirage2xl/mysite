@@ -9,19 +9,39 @@
 
     <body>
         <header>
-            <p><a href="blog"><img src='logo'>A-Z Design And Coding</a></p>
+            <br>
+            <a href="/blog/"><img src='{% static 'images/logo.png' %}'> coding and design</a>
         </header>
         <nav>
             <ul>
-                <li><a href="/blog/">BLOG</a></li>
-                <li><a href="/blog/about/">ABOUT</a></li>
                 <li><a href="/blog/contact/">CONTACT</a></li>
+                <li><a href="/blog/about/">ABOUT</a></li>
+                <li><a href="/blog/">BLOG</a></li>
             </ul>
         </nav>
         <br>
             {% block context %}{% endblock %}
         <footer>
-            <p>Designed and coded by Andrey Zalomskiy</p>
+            <div>Connect socially with me</div>
+            <a href="http://github.com/mirage2xl/"><img src="{% static "images/github.png" %}" /></a>
+            <a href="https://www.facebook.com/andrey.zalomskiy"><img src="{% static "images/facebook.png" %}" /></a>
+            <a href="http://www.linkedin.com/profile/view?id=298134804"><img src="{% static "images/linkedin.png" %}" /></a>
+            <a href="http://twitter.com"><img src="{% static "images/twitter.png" %}" /></a>
+            <p>Andrey Zalomskiy</p>
         </footer>
+
+        <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'mirage2xl'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+
     </body>
 </html>

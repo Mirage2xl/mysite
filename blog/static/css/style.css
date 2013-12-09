@@ -2,37 +2,91 @@ header, nav, footer, article {
     display: block;
 }
 
+html {
+    font-family: "Arial", san-serif;
+}
+
+header {
+    background-image: url("../images/header2.png");
+    height: 100px;
+    background-size: 100%;
+}
+
+header a {
+    font-size: 44px;
+    color: black;
+    text-decoration: none;
+    font-family: "Courier New";
+    font-weight: 900;
+}
+
+header img {
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    color: #5c5c5c;
+}
+
+a:hover {
+    color: black;
+}
+
 body {
     margin: 0px auto;
-    width: 940px;
-    background-color: #F0F0F0;
+    width: 960px;
+    background-color: #fcfcfc;
 }
 
 h2 {
-    font-size: 28px;
-    line-height: 44px;
-    padding: 22px 0;
+    font-size: 32px;
+}
+
+#title {
+    text-decoration: none;
+}
+
+#date {
+    font-size: 12px;
+}
+
+#pages {
+    font-size: :12px;
+}
+
+#id_name {
+    width: 400px;
+}
+
+#id_email {
+    width: 400px;
+}
+
+#id_subject {
+    width: 400px;
+}
+
+#id_message {
+    width: 400px;
+}
+
+table {
+    text-align: right;
 }
 
 h3 {
     font-size: 18px;
-    line-height: 22px;
     padding: 11px 0;
 }
 
-p {
-    padding-bottom: 22px;
-}
-
 nav {
-    position: absolute;
     left: 0;
-    width: 100%;
+
 }
 
 nav ul {
     margin: 0px auto;
-    width: 940px;
     list-style-type: none;
 }
 
@@ -49,9 +103,26 @@ nav ul li a {
     line-height: 44px;
     text-align: center;
     text-decoration: none;
-    color: #777;
+    color: #5c5c5c;
 }
 
 nav ul li a:hover {
-    color: #fff;
+    color: black;
+}
+
+footer {
+    font-size: 10px;
+    text-align: center;
+}
+
+footer div {
+    font-size: 16px;
+}
+
+footer a img {
+    opacity: 0.6;
+}
+
+footer a img:hover {
+    opacity: 1;
 }

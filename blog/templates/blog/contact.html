@@ -3,11 +3,11 @@
 {% block title %}My contact information{% endblock %}
 
 {% block context %}
-    <h2>Need to contact me? Here is the ways:</h2>
+    <h2>Need to contact me? Here are the ways:</h2>
     <address>
         Andrey Zalomskiy<br>
         Tel: 347-348-2680<br>
-        E-mail:<a href="mailto:azalomskiy@icloud.com">azalomskiy@icloud.com</a><br>
+        E-mail: <a href="mailto:azalomskiy@icloud.com">azalomskiy@icloud.com</a><br>
     </address>
     <h3>or send message</h3>
 
@@ -16,31 +16,11 @@
     {% endif %}
 
     <form action='/blog/contact/' method='post'>
-        <p>
-            {{ form.name.errors }}
-            <label for='name'>Name:</label>
-            {{ form.name }}
-<!--            <input name='name' id='name' type='text' value="{{ name }}" required/>-->
-        </p>
-        <p>
-            {{ form.email.errors }}
-            <label for='email'>E-mail</label>
-            {{ form.email }}
-<!--            <input name='email' id='email' type='email' value='{{ email }}' required/>-->
-        </p>
-        <p>
-            {{ form.subject.errors }}
-            <label for='subject'>Subject</label>
-            {{ form.subject }}
-<!--            <input name='subject' id='subject' type='text' value='{{ subject }}' required/>-->
-        </p>
-        <p>
-            {{ form.message.errors }}
-            <label for='message'>Message</label>
-            {{ form.message }}
-<!--            <textarea name='message' id='message' value='{{ subject }}' required></textarea>-->
-        </p>
+        <table>
+            {{ form.as_table }}
+        </table>
         {% csrf_token %}
         <p><input type='submit' value='Send message' /></p>
     </form>
+    <hr>
 {% endblock %}

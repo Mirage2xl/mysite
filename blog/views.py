@@ -1,12 +1,9 @@
-from datetime import datetime
-from django.template import RequestContext
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
-#from django.core.urlresolvers import reverse
-from django.core.context_processors import csrf
-from blog.models import Post, Comment
-from blog.forms import ContactForm, CommentForm
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from blog.models import Post
+from blog.forms import ContactForm
 
 # Create your views here.
 
@@ -20,45 +17,25 @@ def decode_url(str):
 
 
 def index(request):
-    post_list = Post.objects.order_by('-publish_date')[:5]
-    for post in post_list:
+    post_list = Post.objects.all()
+    paginator = Paginator(post_list, 10)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    for post in posts:
         post.url = encode_url(post.title)
-    context = {'posts': post_list}
+    context = {'posts': posts}
     return render(request, 'blog/index.html', context)
 
 
 def blogpost(request, post_url):
-    form = CommentForm()
     post_title = decode_url(post_url)
     post = Post.objects.get(title__iexact=post_title)
-    try:
-        comments = Comment.objects.filter(post=post)
-    except:
-        comments = {}
-    context = {'post': post, 'comments': comments, 'form': form}
-    context.update(csrf(request))
-    return render(request, 'blog/blogpost.html', context)
-
-
-def addcomment(request, post_url):
-    post_title = decode_url(post_url)
-    context = {}
-#    context = RequestContext(request)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            post = Post.objects.get(title__iexact=post_title)
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.comment_date = datetime.date
-            comment.save()
-            return HttpResponseRedirect('blog/blogpost/{{ post_url }}')
-        else:
-            form.errors
-    else:
-        context['form'] = CommentForm()
-        context['post'] = post
-        context['comment'] = Comment.objects.filter(post=post)
+    context = {'post': post}
     return render(request, 'blog/blogpost.html', context)
 
 
@@ -75,7 +52,7 @@ def contact(request):
             send_mail(cd['subject'],
                       cd['message'] + cd['name'],
                       cd.get('email', 'noreply@mysite.com'),
-                      ['azalomskiy@icloud.com'])
+                      ['andrey.zalomskiy@gmail.com'])
         return HttpResponseRedirect('/blog/about/')
     else:
         form = ContactForm()
