@@ -18,6 +18,7 @@ header a {
     text-decoration: none;
     font-family: "Courier New";
     font-weight: 900;
+    margin: 20px;
 }
 
 header img {
@@ -69,6 +70,16 @@ h2 {
 
 #id_message {
     width: 400px;
+}
+
+.about {
+    text-decoration: underline;
+}
+
+.text {
+    text-indent: 50px;
+    line-height: 120%;
+    text-align: justify;
 }
 
 table {
