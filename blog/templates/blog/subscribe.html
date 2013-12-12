@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Subscribe{% endblock %}
+
+{% block context %}
+    <h2>Subscribe for blog news letter</h2>
+
+    {% if form.errors %}
+        <p>Please correct the error {{ form.errors|pluralize }} below.</p>
+    {% endif %}
+
+    {% for message in messages %}
+        <p class="text-error">{{ message }}</p>
+    {% endfor %}
+
+    <form action='/blog/subscribe/' method='post'>
+        <table>
+            {{ form.as_table }}
+        </table>
+        {% csrf_token %}
+        <p><input type="submit" value='Subscribe' /></p>
+    </form>
+    <hr>
+{% endblock %}

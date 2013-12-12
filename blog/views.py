@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
 from blog.models import Post
-from blog.forms import ContactForm
+from blog.forms import ContactForm, SubscribeForm, PostSearchForm
+from mysite.utils import get_mailchimp_api
+import mailchimp
 
 # Create your views here.
 
@@ -57,3 +60,30 @@ def contact(request):
     else:
         form = ContactForm()
     return render(request, 'blog/contact.html', {'form': form})
+
+
+def subscribe(request):
+    if request.method == "POST":
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            try:
+                m = get_mailchimp_api()
+                m.lists.subscribe('54069483af', {'email': cd['email']})
+            except mailchimp.ListAlreadySubscribedError:
+                messages.error(request, "You already subscribed")
+                return HttpResponseRedirect('/blog/subscribe/')
+            except mailchimp.Error, e:
+                messages.error(request, "An error occurred: %s - %s" % (e.__class__, e))
+                return HttpResponseRedirect('/blog/subscribe/')
+            return HttpResponseRedirect('/blog/')
+    else:
+        form = SubscribeForm()
+    return render(request, 'blog/subscribe.html', {'form': form})
+
+
+def search(request):
+    form = PostSearchForm(request.GET)
+    posts = form.search()
+    context = {'posts': posts}
+    return render(request, 'search/search.html', context)

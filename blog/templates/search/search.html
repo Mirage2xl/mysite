@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Search results{% endblock %}
+
+{% block context %}
+    <h2>Search results</h2>
+    <hr>
+    {% for post in posts %}
+        <h2 id='title'><a href='/blog/{{ post.url }}/'>{{ post.title }}</a></h2>
+        <div id='date'>Posted on {{ post.publish_date }} -
+            <a href="/blog/{{ post.url }}/#disqus_thread"></a></div>
+        <p>{{ post.content }}</p>
+        <hr>
+    {% endfor %}
+
+    <div id="pages">
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}">previuos</a>
+        {% endif %}
+
+        <span>
+            page {{ posts.number }} of {{ posts.paginator.num_pages }}
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+        {% endif %}
+    </div>
+{% endblock %}
