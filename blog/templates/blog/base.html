@@ -6,6 +6,8 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel='stylesheet' href="{% static "css/style.css" %}"/>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">stLight.options({publisher: "da525050-0947-4be1-98c2-22c22944ada4", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
     </head>
 
     <body>
@@ -15,22 +17,22 @@
         </header>
         <nav>
             <ul>
+                <li><a href="/blog/">BLOG</a></li>
                 <li><a href="/blog/subscribe/">SUBSCRIBE</a></li>
                 <li><a href="/blog/contact/">CONTACT</a></li>
                 <li><a href="/blog/about/">ABOUT</a></li>
-                <li><a href="/blog/">BLOG</a></li>
+
+                <li><div id='search'>
+                    <form action='/blog/search/' method='get'>
+                        <input type='text' name='q' size="50" placeholder="Search">
+                        <input type='submit' value='Search'>
+                    </form>
+                </div></li>
             </ul>
         </nav>
         <br>
             {% block context %}{% endblock %}
         <footer>
-            <div id='search'>
-                <form action='/blog/search/' method='get'>
-                    Search: <input type='text' name='q' size="50">
-                    <input type='submit' value='Search'>
-                </form>
-            </div>
-            <br>
             <div>Connect socially with me</div>
             <a href="http://github.com/mirage2xl/"><img src="{% static "images/github.png" %}" /></a>
             <a href="https://www.facebook.com/andrey.zalomskiy"><img src="{% static "images/facebook.png" %}" /></a>

@@ -3,27 +3,28 @@
 {% block title %}Search results{% endblock %}
 
 {% block context %}
-    <h2>Search results</h2>
+    <h2>Search results:</h2>
     <hr>
-    {% for post in posts %}
-        <h2 id='title'><a href='/blog/{{ post.url }}/'>{{ post.title }}</a></h2>
-        <div id='date'>Posted on {{ post.publish_date }} -
-            <a href="/blog/{{ post.url }}/#disqus_thread"></a></div>
-        <p>{{ post.content }}</p>
+    {% if query %}
+        {% for result in page.object_list %}
+            <h3>
+                &lt&gt<a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+            </h3>
+            <div id='date'>Posted on {{ result.object.publish_date }}</div>
+            <p>{{ result.object.content }}</p>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            <p>Input what you looking for and I will try to find it for you</p>
+        {% endif %}
         <hr>
-    {% endfor %}
-
-    <div id="pages">
-        {% if posts.has_previous %}
-            <a href="?page={{ posts.previous_page_number }}">previuos</a>
-        {% endif %}
-
-        <span>
-            page {{ posts.number }} of {{ posts.paginator.num_pages }}
-        </span>
-
-        {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}">next</a>
-        {% endif %}
-    </div>
 {% endblock %}

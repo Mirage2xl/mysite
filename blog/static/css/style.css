@@ -86,6 +86,15 @@ h2 {
     color: red;
 }
 
+#search {
+    line-height: 44px;
+    margin-left: 60px;
+}
+
+#share {
+    text-align: right;
+}
+
 table {
     text-align: right;
 }
@@ -96,8 +105,7 @@ h3 {
 }
 
 nav {
-    left: 0;
-
+    left: 0px;
 }
 
 nav ul {
@@ -106,14 +114,14 @@ nav ul {
 }
 
 nav ul li {
-    float: right;
+    float: left;
     display: inline;
 }
 
 nav ul li a {
     display: block;
-    margin-right: 20px;
-    width: 140px;
+    margin-right: 0px;
+    width: 120px;
     font-size: 14px;
     line-height: 44px;
     text-align: center;
