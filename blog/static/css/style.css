@@ -1,3 +1,7 @@
+/******************
+-----html----------
+******************/
+
 header, nav, footer, article {
     display: block;
 }
@@ -5,6 +9,34 @@ header, nav, footer, article {
 html {
     font-family: "Arial", san-serif;
 }
+
+body {
+    margin: 0px auto;
+    width: 960px;
+    background-color: #fcfcfc;
+}
+
+a {
+    text-decoration: none;
+    color: #5c5c5c;
+}
+
+a:hover {
+    color: black;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 18px;
+    padding: 11px 0;
+}
+
+/******************
+------header-------
+******************/
 
 header {
     background-image: url("../images/header2.png");
@@ -25,84 +57,9 @@ header img {
     vertical-align: middle;
 }
 
-a {
-    text-decoration: none;
-    color: #5c5c5c;
-}
-
-a:hover {
-    color: black;
-}
-
-body {
-    margin: 0px auto;
-    width: 960px;
-    background-color: #fcfcfc;
-}
-
-h2 {
-    font-size: 32px;
-}
-
-#title {
-    text-decoration: none;
-}
-
-#date {
-    font-size: 12px;
-}
-
-#pages {
-    font-size: :12px;
-}
-
-#id_name {
-    width: 400px;
-}
-
-#id_email {
-    width: 400px;
-}
-
-#id_subject {
-    width: 400px;
-}
-
-#id_message {
-    width: 400px;
-}
-
-.about {
-    text-decoration: underline;
-}
-
-.text {
-    text-indent: 50px;
-    line-height: 120%;
-    text-align: justify;
-}
-
-.text-error {
-    color: red;
-}
-
-#search {
-    line-height: 44px;
-    margin-left: 60px;
-}
-
-#share {
-    text-align: right;
-}
-
-table {
-    text-align: right;
-}
-
-h3 {
-    font-size: 18px;
-    padding: 11px 0;
-}
+/*******************
+-----nav bar--------
+*******************/
 
 nav {
     left: 0px;
@@ -133,6 +90,19 @@ nav ul li a:hover {
     color: black;
 }
 
+/*******************
+-----search---------
+*******************/
+
+#search {
+    line-height: 44px;
+    margin-left: 60px;
+}
+
+/*******************
+------footer--------
+*******************/
+
 footer {
     font-size: 10px;
     text-align: center;
@@ -149,3 +119,78 @@ footer a img {
 footer a img:hover {
     opacity: 1;
 }
+
+/*******************
+----------main------
+*******************/
+
+#title {
+    text-decoration: none;
+}
+
+#date {
+    font-size: 12px;
+}
+
+#pages {
+    font-size: :12px;
+}
+
+/*******************
+----blog post-------
+*******************/
+
+#share {
+    text-align: right;
+}
+
+/*******************
+---contact form-----
+*******************/
+
+table {
+    text-align: right;
+}
+
+#id_name, #id_email, #id_subject, #id_message {
+    width: 400px;
+}
+
+#id_message {
+    max-width: 400px;
+}
+
+
+/*******************
+--------about-------
+*******************/
+
+.about {
+    text-decoration: underline;
+}
+
+.text {
+    text-indent: 50px;
+    line-height: 120%;
+    text-align: justify;
+}
+
+/*******************
+-------subscribe----
+*******************/
+
+.text-error {
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
